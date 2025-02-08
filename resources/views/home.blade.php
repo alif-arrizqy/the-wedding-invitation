@@ -414,7 +414,6 @@ foreach ($detail as $item) {
                         @foreach ($wedding as $item)
                         <span>Made With &hearts; {{ $item->name }}.</span>
                         @endforeach
-                        <span>Developed by <a href="https://github.com/alif-arrizqy" target="_blank">alif-arrizqy</a></span>
                     </div>
                 </footer>
 
