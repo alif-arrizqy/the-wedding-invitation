@@ -13,6 +13,7 @@ RUN apk update && apk add --no-cache \
     php83-curl \
     php83-xml \
     php83-zip \
+    php83-openssl \ 
     nginx \
     git \
     curl
@@ -55,3 +56,4 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 # Run Laravel-specific commands during container startup
 CMD ["/bin/sh", "/app/docker-entrypoint.sh"]
+
