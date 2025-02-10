@@ -1,10 +1,14 @@
 #!/bin/sh
 
-# Start PHP-FPM
-php-fpm83 -D
-
 # Start Nginx
-nginx -g "daemon off;"
+nginx -g "daemon off;" &
 
 # Start Vite dev server
-npm run dev
+npm install
+npm run dev &
+
+# Start laravel
+php artisan key:generate
+php artisan migrate:fresh --seed
+php artisan storage:link
+php artisan serve
