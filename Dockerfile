@@ -15,7 +15,13 @@ RUN apk update && apk add --no-cache \
     php83-zip \
     nginx \
     git \
-    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    curl
+
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Verify Composer installation
+RUN composer --version
 
 # Copy package.json and package-lock.json
 COPY package.json package-lock.json ./
@@ -24,7 +30,10 @@ COPY package.json package-lock.json ./
 RUN npm install --production
 
 # Install Laravel using Composer
-RUN composer create-project --prefer-dist laravel/laravel .
+RUN composer create-project --prefer-dist laravel/laravel /tmp/laravel && \
+    mv /tmp/laravel/* /app && \
+    mv /tmp/laravel/.* /app || true && \
+    rm -rf /tmp/laravel
 
 # Ensure Laravel is in PATH
 ENV PATH="/app/vendor/bin:$PATH"
