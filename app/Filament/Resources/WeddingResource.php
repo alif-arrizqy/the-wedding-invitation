@@ -34,6 +34,7 @@ class WeddingResource extends Resource
         return $form
             ->schema([
                 Card::make()->schema([
+                    TextInput::make('title')->required(),
                     TextInput::make('name')->required(),
                     MarkdownEditor::make('note')->label('Tagline')->required(),
                     FileUpload::make('hero1')->required()->image(),
@@ -52,6 +53,7 @@ class WeddingResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('title'),
                 TextColumn::make('name')->searchable(),
                 ImageColumn::make('hero1'),
                 ImageColumn::make('hero2'),

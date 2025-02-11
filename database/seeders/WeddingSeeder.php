@@ -16,6 +16,7 @@ class WeddingSeeder extends Seeder
     public function run()
     {
         Wedding::create([
+            'title'         => 'A Celebration of Love: Alif & Pika’s Wedding',
             'name'          => 'Alif & Pika',
             'note'          => 'A great marriage is not when the perfect couple comes together. \
             It is when an imperfect couple learns to enjoy their differences.',
