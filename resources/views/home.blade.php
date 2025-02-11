@@ -370,18 +370,17 @@ foreach ($detail as $item) {
                                 <div class="row">
                                     @foreach ($gift as $item)
                                     <div class="column lg-6 tab-12">
-                                        <h4>Alamat</h4>
+                                        <h5>Alamat {{ $item->name }}</h5>
                                         <p class="desc">
-                                            {{ $item->address }}
+                                            <span id="address_{{ $loop->index }}">{{ $item->address }}</span>
                                             <br>
                                             @if(!$item->note) @else Patokan : {{ $item->note }} @endif
-                                            <a href="{{ $item->maps }}" target="_blank">{{ $item->maps }}</a>
+                                            <button class="btn btn--stroke" onclick="copyToClipboard('address_{{ $loop->index }}')">Copy Alamat</button>
+                                            <a href="{{ $item->maps }}" class="btn btn--stroke" target="_blank">Lihat Maps</a>
                                         </p>
-
                                     </div>
                                     @endforeach
                                 </div>
-
                             </div>
                         </div>
 
@@ -393,14 +392,13 @@ foreach ($detail as $item) {
                                         <h4>{{ $item->name }}</h4>
                                         <img src="{{ url('/storage/') }}/{{ $item->logo }}" style="height:30px; widht:auto;">
                                         <p class="desc">
-                                            {{ $item->acc_number }}
+                                            <b><span id="acc_number_{{ $loop->index }}">{{ $item->acc_number }}</span></b>
                                             <br>a/n {{ $item->acc_name }}
+                                            <button class="btn btn--stroke u-fullwidth" onclick="copyToClipboard('acc_number_{{ $loop->index }}')">Copy</button>
                                         </p>
-
                                     </div>
                                     @endforeach
                                 </div>
-
                             </div>
                         </div>
 
@@ -436,6 +434,18 @@ foreach ($detail as $item) {
     ================================================== -->
     <script src="assets/undangan/js/plugins.js"></script>
     <script src="assets/undangan/js/main.js"></script>
+    <script>
+        function copyToClipboard(elementId) {
+            var copyText = document.getElementById(elementId).innerText;
+            var textarea = document.createElement("textarea");
+            textarea.value = copyText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+            alert("Copied: " + copyText);
+        }
+    </script>
     <Script>
         (function(html) {
 
