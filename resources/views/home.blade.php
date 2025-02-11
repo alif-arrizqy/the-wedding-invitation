@@ -375,7 +375,7 @@ foreach ($detail as $item) {
                                             <span id="address_{{ $loop->index }}">{{ $item->address }}</span>
                                             <br>
                                             @if(!$item->note) @else Patokan : {{ $item->note }} @endif
-                                            <button class="btn btn--stroke" onclick="copyToClipboard('address_{{ $loop->index }}')">Copy Alamat</button>
+                                            <button class="btn btn--stroke" onclick="copyToClipboard('address_{{ $loop->index }}')">Salin Alamat</button>
                                             <a href="{{ $item->maps }}" class="btn btn--stroke" target="_blank">Lihat Maps</a>
                                         </p>
                                     </div>
@@ -394,7 +394,7 @@ foreach ($detail as $item) {
                                         <p class="desc">
                                             <b><span id="acc_number_{{ $loop->index }}">{{ $item->acc_number }}</span></b>
                                             <br>a/n {{ $item->acc_name }}
-                                            <button class="btn btn--stroke u-fullwidth" onclick="copyToClipboard('acc_number_{{ $loop->index }}')">Copy</button>
+                                            <button class="btn btn--stroke u-fullwidth" onclick="copyToClipboard('acc_number_{{ $loop->index }}')">Salin Nomor Rekening</button>
                                         </p>
                                     </div>
                                     @endforeach
