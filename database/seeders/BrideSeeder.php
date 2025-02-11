@@ -25,7 +25,7 @@ class BrideSeeder extends Seeder
             'acc_name'          => 'Wafiq Azizah',
             'acc_number'        => 923123456,
             'gender'            => 'Female',
-            'photo'             => 'women.jpg',
+            'photo'             => 'female.png',
             'created_at'        => now(),
             'updated_at'        => now()
         ]);
@@ -41,7 +41,7 @@ class BrideSeeder extends Seeder
             'acc_name'          => 'Alif Ayatulloh Ar-Rizqy',
             'acc_number'        => 456789234,
             'gender'            => 'Male',
-            'photo'             => 'men.jpg',
+            'photo'             => 'male.png',
             'created_at'        => now(),
             'updated_at'        => now()
         ]);
