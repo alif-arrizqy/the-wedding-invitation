@@ -10,15 +10,19 @@ class CreateWish extends Component
 {
     public $name;
     public $comment;
+    public $guestName;
 
     protected $rules = [
         'name' => 'required',
         'comment' => 'required',
     ];
 
-    public function mount(Request $request)
+    public function mount($guestName = null)
     {
-        $this->name = $request->to;
+        // If a guest name is provided, use it to prefill the name field
+        if ($guestName) {
+            $this->name = $guestName;
+        }
     }
 
     public function render()
