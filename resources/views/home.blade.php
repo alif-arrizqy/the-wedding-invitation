@@ -322,7 +322,7 @@ foreach ($detail as $item) {
                     <div id="tab-guest" class="tab-content__item">
                         <div class="row">
                             <div class="column">
-                                <div class="vip-card">
+                                <div class="vip-card" id="vip-card-container">
                                     <div class="vip-card-inner">
                                         <h2 class="vip-title">VIP Guest</h2>
                                         <div class="vip-badge">Special Invitation</div>
@@ -343,6 +343,16 @@ foreach ($detail as $item) {
                                             </p>
                                         @endforeach
                                     </div>
+                                </div>
+
+                                <div class="download-button-container text-center" style="margin-top: 20px;">
+                                    <button id="download-vip-card" class="btn btn--primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16" style="margin-right: 5px;">
+                                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                                            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                                        </svg>
+                                        Download VIP Card
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -585,6 +595,75 @@ foreach ($detail as $item) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
     <script>
         baguetteBox.run('.tz-gallery');
+    </script>
+
+    <!-- Download VIP Guest -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the download button
+        const downloadBtn = document.getElementById('download-vip-card');
+        const downloadBtnContainer = document.querySelector('.download-button-container');
+
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', function() {
+                // Show loading state
+                downloadBtn.textContent = 'Processing...';
+                downloadBtn.disabled = true;
+
+                // Target the VIP card container
+                const cardElement = document.getElementById('vip-card-container');
+
+                // Add a temporary class for better rendering
+                cardElement.classList.add('screenshot-mode');
+
+                // Hide the download button container before taking screenshot
+                downloadBtnContainer.style.display = 'none';
+
+                // Use html2canvas to convert the card to an image
+                html2canvas(cardElement, {
+                    scale: 2, // Higher resolution
+                    backgroundColor: null,
+                    logging: false,
+                    useCORS: true
+                }).then(function(canvas) {
+                    // Remove the temporary class
+                    cardElement.classList.remove('screenshot-mode');
+
+                    // Show the download button container again
+                    downloadBtnContainer.style.display = 'block';
+
+                    // Convert canvas to data URL
+                    const imgData = canvas.toDataURL('image/png');
+
+                    // Create a download link
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = imgData;
+                    downloadLink.download = 'VIP-Invitation-{{$guest_name}}.png';
+
+                    // Trigger download
+                    document.body.appendChild(downloadLink);
+                    downloadLink.click();
+                    document.body.removeChild(downloadLink);
+
+                    // Restore button state
+                    downloadBtn.textContent = 'Download VIP Card';
+                    downloadBtn.disabled = false;
+                }).catch(function(error) {
+                    // Show the download button container again in case of error
+                    downloadBtnContainer.style.display = 'block';
+
+                    console.error('Error generating image:', error);
+                    alert('Failed to generate image. Please try again.');
+
+                    // Restore button state
+                    downloadBtn.textContent = 'Download VIP Card';
+                    downloadBtn.disabled = false;
+                    cardElement.classList.remove('screenshot-mode');
+                });
+            });
+        }
+    });
     </script>
 
     @include('sweetalert::alert')

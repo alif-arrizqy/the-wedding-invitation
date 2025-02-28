@@ -90,5 +90,66 @@
 .vip-footer {
     margin-top: 1.5rem;
     font-size: 1.5rem;
+    font-style: italic;
     color: #4a4a4a;
+}
+
+/* Styles for better screenshot rendering */
+.screenshot-mode {
+    /* Ensure the card has proper dimensions and background for screenshot */
+    background: white;
+    border: 1px solid #d4b08c;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    padding: 30px !important;
+    margin: 30px auto !important;
+    max-width: 500px;
+}
+
+.vip-card {
+    background: white;
+    border: 1px solid #d4b08c;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+    position: relative;
+    margin: 2rem 0;
+    overflow: hidden;
+}
+
+.vip-card-inner {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.vip-title {
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    color: #4a4a4a;
+    position: relative;
+    display: inline-block;
+}
+
+.vip-badge {
+    display: inline-block;
+    background: #d4b08c;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin: 1rem 0;
+}
+
+.vip-name {
+    font-size: 1.8rem;
+    margin: 1.5rem 0;
+    font-family: 'Playfair Display', serif;
+}
+
+.vip-note {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: rgba(212, 176, 140, 0.1);
+    border-radius: 6px;
+    font-style: italic;
 }
