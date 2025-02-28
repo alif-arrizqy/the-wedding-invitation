@@ -9,6 +9,7 @@ use App\Models\Wedding;
 use App\Models\Gift;
 use App\Models\Thank;
 use App\Models\Wishes;
+use App\Models\Guest;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -28,9 +29,10 @@ class HomeController extends Controller
         $thank      = Thank::all();
         $galery     = Galery::all();
         $wish       = Wishes::orderby('id', 'desc')->get();
+        $guest      = Guest::all();
         $bank       = Bride::select('brides.name', 'brides.acc_name', 'brides.acc_number', 'brides.bank_id', 'banks.name as bank_name', 'banks.logo')->join('banks', 'banks.id', 'brides.bank_id')->get();
 
-        return view('home', compact('bride', 'detail', 'wedding', 'gift', 'bank', 'to', 'thank', 'wish', 'galery'));
+        return view('home', compact('bride', 'detail', 'wedding', 'gift', 'bank', 'to', 'thank', 'wish', 'guest', 'galery'));
     }
 
     /**
