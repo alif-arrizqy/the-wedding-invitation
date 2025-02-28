@@ -18,8 +18,7 @@ class WeddingSeeder extends Seeder
         Wedding::create([
             'title'         => 'A Celebration of Love: Alif & Pika’s Wedding',
             'name'          => 'Alif & Pika',
-            'note'          => 'A great marriage is not when the perfect couple comes together. \
-            It is when an imperfect couple learns to enjoy their differences.',
+            'note'          => 'A great marriage is not when the perfect couple comes together. It is when an imperfect couple learns to enjoy their differences.',
             'status'        => 'Active',
             'hero1'         => 'hero-1.jpg',
             'hero2'         => 'hero-2.jpg',
