@@ -1,0 +1,94 @@
+/* VIP Guest Card Styling */
+.vip-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #d4b08c;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+    position: relative;
+    margin: 2rem 0;
+    overflow: hidden;
+}
+
+.vip-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 5px;
+    background: linear-gradient(to right, #d4b08c, #f7e4cf, #d4b08c);
+}
+
+.vip-card-inner {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.vip-title {
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    color: #4a4a4a;
+    position: relative;
+    display: inline-block;
+}
+
+.vip-title:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: 80px;
+    height: 2px;
+    background: #d4b08c;
+    transform: translateX(-50%);
+}
+
+.vip-badge {
+    display: inline-block;
+    background: #d4b08c;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin: 1rem 0;
+    transform: rotate(-2deg);
+}
+
+.vip-name {
+    font-size: 1.8rem;
+    margin: 1.5rem 0;
+    font-family: 'Playfair Display', serif;
+}
+
+.vip-name span {
+    font-weight: bold;
+    color: #d4b08c;
+}
+
+.vip-note {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: rgba(212, 176, 140, 0.1);
+    border-radius: 6px;
+    font-style: italic;
+}
+
+.vip-qr-code {
+    margin: 1.5rem auto;
+    width: 150px;
+    height: 150px;
+    background: #f9f9f9;
+    border: 1px dashed #d4b08c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vip-footer {
+    margin-top: 1.5rem;
+    font-size: 1.5rem;
+    color: #4a4a4a;
+}

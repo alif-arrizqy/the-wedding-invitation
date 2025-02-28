@@ -38,6 +38,7 @@ foreach ($detail as $item) {
     <link rel="stylesheet" href="assets/undangan/css/vendor.css">
     <link rel="stylesheet" href="assets/undangan/css/styles.css">
     <link rel="stylesheet" href="assets/undangan/css/gallery-grid.css">
+    <link rel="stylesheet" href="assets/undangan/css/guest.css">
 
     <!-- favicons
     ================================================== -->
@@ -84,7 +85,12 @@ foreach ($detail as $item) {
                 </h1>
 
                 <div class="text-pretitle">
-                    Dear: <span style="text-color:white; font-weight: bold;">{{ $to }}</span>
+                    {{ $item->note }}
+                    <br>
+                    @php
+                        $guest_name = ucwords(str_replace(['-', 'and'], [' ', '&'], $to));
+                    @endphp
+                    <br>Dear: <span style="text-color:white; font-weight: bold;">{{ $guest_name }}</span>
                     <br>We are inviting you to the wedding
                     <br>
                     <br>
@@ -161,6 +167,24 @@ foreach ($detail as $item) {
                                 <span>Event</span>
                             </a>
                         </li>
+                        @php
+                            // Check if current guest is VIP by looking up in the guest list
+                            $isCurrentGuestVIP = false;
+                            foreach($guest as $guestItem) {
+                                if(strtolower($guestItem->name) == strtolower($guest_name) && $guestItem->isVIP == 1) {
+                                    $isCurrentGuestVIP = true;
+                                    break;
+                                }
+                            }
+                        @endphp
+
+                        @if($isCurrentGuestVIP)
+                        <li>
+                            <a href="#tab-guest">
+                                <span>VIP Guest</span>
+                            </a>
+                        </li>
+                        @endif
                         <li>
                             <a href="#tab-gallery">
                                 <span>Gallery</span>
@@ -293,7 +317,40 @@ foreach ($detail as $item) {
 
                     </div> <!-- end 02 - tab event -->
 
-                    <!-- 03 - tab gallery -->
+                    <!-- 03 - tab guest -->
+                    @if($isCurrentGuestVIP)
+                    <div id="tab-guest" class="tab-content__item">
+                        <div class="row">
+                            <div class="column">
+                                <div class="vip-card">
+                                    <div class="vip-card-inner">
+                                        <h2 class="vip-title">VIP Guest</h2>
+                                        <div class="vip-badge">Special Invitation</div>
+                                        <h2 class="vip-name">Nama Tamu VIP: <span>{{$guest_name}}</span></h2>
+                                        <p class="desc">
+                                            Kami sangat berharap Anda dapat hadir di moment bahagia ini.
+                                        </p>
+                                        <div class="vip-note">
+                                            <p>
+                                                Tunjukkan undangan ini kepada pagar ayu penerima tamu,
+                                                untuk menukar dengan Souvenir VIP yang telah kami sediakan.
+                                            </p>
+                                        </div>
+                                        @foreach ($wedding as $item)
+                                        <div class="vip-footer">
+                                            <p>
+                                                Terima Kasih &hearts; {{ $item->name }}
+                                            </p>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    <!-- end 03 - tab guest -->
+
+                    <!-- 04 - tab gallery -->
                     @foreach ($galery as $item)
                     <div id="tab-gallery" class="tab-content__item">
                         <div class="tz-gallery">
@@ -337,9 +394,9 @@ foreach ($detail as $item) {
                         </div>
                     </div>
                     @endforeach
-                    <!-- end 03 - tab gallery -->
+                    <!-- end 04 - tab gallery -->
 
-                    <!-- 04 - tab wishes -->
+                    <!-- 05 - tab wishes -->
                     <div id="tab-wishes" class="tab-content__item">
                         @foreach ($thank as $item)
                         <p class="desc">{{ $item->note }}</p>
@@ -349,7 +406,7 @@ foreach ($detail as $item) {
                         <div class="row">
 
                             <div class="column lg-6 tab-12">
-                                <livewire:create-wish>
+                                @livewire('create-wish', ['guestName' => $guest_name])
                             </div>
 
                             <div class="column lg-6 tab-12" style=" height: 500px; overflow: auto;">
@@ -359,9 +416,9 @@ foreach ($detail as $item) {
 
                         </div>
 
-                    </div> <!-- end 04 - tab wishes -->
+                    </div> <!-- end 05 - tab wishes -->
 
-                    <!-- 05 - tab gift -->
+                    <!-- 06 - tab gift -->
                     <div id="tab-gift" class="tab-content__item">
                         <p class="desc">Tanpa mengurangi rasa hormat, bagi anda yang ingin memberikan tanda kasih untuk mempelai dapat melalui: </p>
 
@@ -402,7 +459,7 @@ foreach ($detail as $item) {
                             </div>
                         </div>
 
-                    </div> <!-- end 05 - tab gift -->
+                    </div> <!-- end 06 - tab gift -->
 
                 </div> <!-- end tab content -->
 
