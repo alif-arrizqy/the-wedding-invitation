@@ -342,9 +342,9 @@ foreach ($detail as $item) {
                                                 Terima Kasih &hearts; {{ $item->name }}
                                             </p>
                                         @endforeach
+                                        </div>
                                     </div>
                                 </div>
-
                                 <div class="download-button-container text-center" style="margin-top: 20px;">
                                     <button id="download-vip-card" class="btn btn--primary">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16" style="margin-right: 5px;">
