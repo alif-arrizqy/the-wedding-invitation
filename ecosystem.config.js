@@ -8,7 +8,7 @@ module.exports = {
       interpreter: "",
       instances: 1,
       autorestart: true,
-      watch: false
+      watch: false,
     },
     {
       name: "vite-dev",
@@ -18,7 +18,7 @@ module.exports = {
       interpreter: "",
       instances: 1,
       autorestart: true,
-      watch: false
-    }
-  ]
+      watch: false,
+    },
+  ],
 };
