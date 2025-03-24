@@ -3,9 +3,8 @@ module.exports = {
     {
       name: "laravel-serve",
       script: "php",
-      args: "artisan serve --host=0.0.0.0",
+      args: "artisan serve",
       cwd: "/home/pi/the-wedding-invitation",
-      interpreter: "",
       instances: 1,
       autorestart: true,
       watch: false,
@@ -13,9 +12,8 @@ module.exports = {
     {
       name: "vite-dev",
       script: "npm",
-      args: "run dev -- --host",
+      args: "run dev",
       cwd: "/home/pi/the-wedding-invitation",
-      interpreter: "",
       instances: 1,
       autorestart: true,
       watch: false,
