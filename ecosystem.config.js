@@ -6,7 +6,7 @@ module.exports = {
     cwd: "/home/pi/the-wedding-invitation",
     instances: 1,
     autorestart: true,
-    watch: false,
+    watch: false
   }, {
     name: "vite-dev",
     script: "npm",
@@ -14,7 +14,6 @@ module.exports = {
     cwd: "/home/pi/the-wedding-invitation",
     instances: 1,
     autorestart: true,
-    watch: false,
-    },
-  ],
+    watch: false
+  }]
 };
