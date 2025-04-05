@@ -13,10 +13,14 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\URL;
+use Filament\Notifications\Notification;
 
 class GuestResource extends Resource
 {
@@ -33,7 +37,7 @@ class GuestResource extends Resource
         return $form
             ->schema([
                 Card::make()->schema([
-                    Textinput::make('name')->required(),
+                    TextInput::make('name')->required(),
                     Select::make('isVIP')
                         ->options([
                             1 => 'VIP',
@@ -49,17 +53,60 @@ class GuestResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')->searchable(),
-                TextColumn::make('isVIP'),
+                TextColumn::make('isVIP')
+                    ->formatStateUsing(fn (string $state): string => $state ? 'VIP' : 'Non-VIP'),
+                TextColumn::make('url')
+                    ->label('Invitation URL')
+                    ->copyable()
+                    ->limit(30),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('isVIP')
+                    ->options([
+                        '1' => 'VIP',
+                        '0' => 'Non-VIP',
+                    ])
+                    ->label('Guest Status'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Action::make('sendWhatsapp')
+                    ->label('Send WhatsApp')
+                    ->icon('heroicon-o-chat-bubble-left')
+                    ->color('success')
+                    ->url(function (Guest $record): string {
+                        // Template pesan undangan
+                        $message = "Assalamu'alaikum Wr. Wb.\n\n";
+                        $message .= "Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i *{$record->name}* untuk menghadiri acara pernikahan kami.\n\n";
+                        $message .= "Silakan kunjungi link undangan digital kami:\n{$record->url}\n\n";
+                        $message .= "Kehadiran Bapak/Ibu/Saudara/i sangat berarti bagi kami.\n\n";
+                        $message .= "Atas perhatiannya kami ucapkan terima kasih.\n\n";
+                        $message .= "Wassalamu'alaikum Wr. Wb.";
+
+                        // Generate WhatsApp URL dengan pesan terenkode
+                        $encodedMessage = urlencode($message);
+                        return "https://api.whatsapp.com/send?text={$encodedMessage}";
+                    })
+                    ->openUrlInNewTab(),
+                Action::make('viewMessage')
+                    ->label('View Message')
+                    ->icon('heroicon-o-clipboard-document')
+                    ->url(function (Guest $record): string {
+                        return route('guest.view-message', $record);
+                    })
+                    ->openUrlInNewTab(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\BulkAction::make('bulkSendWhatsApp')
+                        ->label('Bulk Send WhatsApp')
+                        ->icon('heroicon-o-chat-bubble-left-right')
+                        ->action(function (Collection $records) {
+                            // Redirect ke halaman broadcast WhatsApp dengan parameter ID
+                            $ids = $records->pluck('id')->join(',');
+                            redirect()->route('guest.bulk-send', ['ids' => $ids]);
+                        })
                 ]),
             ]);
     }

@@ -10,3 +10,5 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::post('/home', [HomeController::class, 'store']);
+Route::get('/guests/bulk-send', [App\Http\Controllers\GuestInvitationController::class, 'bulkSend'])->name('guest.bulk-send');
+Route::get('/guests/{guest}/message', [App\Http\Controllers\GuestInvitationController::class, 'viewMessage'])->name('guest.view-message');
