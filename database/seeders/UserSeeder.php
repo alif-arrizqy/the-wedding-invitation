@@ -21,6 +21,14 @@ class UserSeeder extends Seeder
             'email_verified_at' => now()
         ]);
 
+        $superadmin_2 = User::create([
+            'name'      => 'pika',
+            'email'     => 'admin.pika@mail.com',
+            'password'  => bcrypt('superpikaadmin'),
+            'email_verified_at' => now()
+        ]);
+
         $superadmin->assignRole('Super admin');
+        $superadmin_2->assignRole('Super admin');
     }
 }
