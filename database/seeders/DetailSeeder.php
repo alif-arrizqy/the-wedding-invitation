@@ -17,7 +17,7 @@ class DetailSeeder extends Seeder
     {
         Detail::create([
             'wedding_id'        => 1,
-            'type'              => 'Akad Pernikahan',
+            'type'              => 'Akad',
             'date'              => '2025-06-01 09:00:00',
             'address'           => 'Griya Pratama Mas Blok B4 No. 2, Desa Cikarageman, Kec. Setu, Kab. Bekasi, Jawa Barat',
             'maps'              => 'https://maps.app.goo.gl/z3NdZL67aJ4wGh7s9',
