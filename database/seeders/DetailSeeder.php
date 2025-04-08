@@ -19,9 +19,9 @@ class DetailSeeder extends Seeder
             'wedding_id'        => 1,
             'type'              => 'Akad Pernikahan',
             'date'              => '2025-06-01 09:00:00',
-            'address'           => 'Griya Pratama Mas Blok B4 No. 02, Desa Cikarageman, Kec. Setu, Kab. Bekasi, Jawa Barat',
-            'maps'              => 'https://maps.app.goo.gl/RqsdRkRFTfjXmeBx6',
-            'calendar'          => 'https://calendar.app.google/dCwnjGTepNntYdbi6',
+            'address'           => 'Griya Pratama Mas Blok B4 No. 2, Desa Cikarageman, Kec. Setu, Kab. Bekasi, Jawa Barat',
+            'maps'              => 'https://maps.app.goo.gl/z3NdZL67aJ4wGh7s9',
+            'calendar'          => 'https://calendar.app.google/YKrbCXjNq2Ybhn8v8',
             'created_at'        => now(),
             'updated_at'        => now()
         ]);
@@ -30,9 +30,9 @@ class DetailSeeder extends Seeder
             'wedding_id'        => 1,
             'type'              => 'Resepsi',
             'date'              => '2025-06-01 10:00:00',
-            'address'           => 'Griya Pratama Mas Blok B4 No. 02, Desa Cikarageman, Kec. Setu, Kab. Bekasi, Jawa Barat',
-            'maps'              => 'https://maps.app.goo.gl/RqsdRkRFTfjXmeBx6',
-            'calendar'          => 'https://calendar.app.google/dCwnjGTepNntYdbi6',
+            'address'           => 'Griya Pratama Mas Blok B4 No. 2, Desa Cikarageman, Kec. Setu, Kab. Bekasi, Jawa Barat',
+            'maps'              => 'https://maps.app.goo.gl/z3NdZL67aJ4wGh7s9',
+            'calendar'          => 'https://calendar.app.google/YKrbCXjNq2Ybhn8v8',
             'created_at'        => now(),
             'updated_at'        => now()
         ]);
