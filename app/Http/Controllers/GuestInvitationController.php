@@ -18,12 +18,22 @@ class GuestInvitationController extends Controller
     public function viewMessage(Guest $guest)
     {
         // Template pesan undangan
-        $message = "Assalamu'alaikum Wr. Wb.\n\n";
-        $message .= "Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i *{$guest->name}* untuk menghadiri acara pernikahan kami.\n\n";
+        $message = "Assalamu'alaikum Wr. Wb.\n";
+        $message .= "Kepada Yth.\n";
+        $message .= "Bapak/Ibu/Saudara/i\n";
+        $message .= "*{$guest->name}*\n";
+        $message .= "di tempat\n\n";
+        $message .= "Bismillahirrahmanirrahim.\n";
+        $message .= "Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.\n\n";
+        $message .= "📅 Minggu, 1 Juni 2025\n";
+        $message .= "🕒 Pukul 09.00 WIB\n";
+        $message .= "🏠 Alamat: Kediaman Mempelai Wanita (Perum Griya Pratama Mas, Blok B4/ No. 2, Desa Cikarageman, Kecamatan Setu, Bekasi)\n\n";
         $message .= "Silakan kunjungi link undangan digital kami:\n{$guest->url}\n\n";
         $message .= "Kehadiran Bapak/Ibu/Saudara/i sangat berarti bagi kami.\n\n";
-        $message .= "Atas perhatiannya kami ucapkan terima kasih.\n\n";
-        $message .= "Wassalamu'alaikum Wr. Wb.";
+        $message .= "Atas perhatiannya kami ucapkan terima kasih.\n";
+        $message .= "Wassalamu'alaikum Wr. Wb.\n\n";
+        $message .= "Kami yang berbahagia,\n";
+        $message .= "*Alif & Pika*\n";
 
         // Generate WhatsApp URL
         $whatsappLink = "https://api.whatsapp.com/send?text=" . urlencode($message);
