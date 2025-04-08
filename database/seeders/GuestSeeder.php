@@ -177,6 +177,7 @@ class GuestSeeder extends Seeder
             ['name' => 'Prof. Dr. Endang Warsiki, S.T.P., M.Si.', 'isVIP' => false],
             ['name' => 'Bapak Bambang', 'isVIP' => false],
             ['name' => 'Bapak Yono Purwanto', 'isVIP' => false],
+            ['name' => 'Bapak Sugiono', 'isVIP' => false],
         ];
 
         foreach ($guests as $guestData) {
