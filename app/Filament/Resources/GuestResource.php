@@ -6,6 +6,7 @@ use App\Filament\Resources\GuestResource\Pages;
 use App\Filament\Resources\GuestResource\RelationManagers;
 use App\Models\Guest;
 use Filament\Forms;
+use Filament\Forms\Components\BelongsToSelect;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
@@ -37,6 +38,7 @@ class GuestResource extends Resource
         return $form
             ->schema([
                 Card::make()->schema([
+                    BelongsToSelect::make('wedding_id')->label('Wedding')->relationship('wedding', 'name'),
                     TextInput::make('name')->required(),
                     Select::make('isVIP')
                         ->options([
