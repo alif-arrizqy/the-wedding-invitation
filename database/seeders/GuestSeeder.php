@@ -15,6 +15,8 @@ class GuestSeeder extends Seeder
     {
         // Guest list from provided data
         $guests = [
+            ['name' => 'Tuan Aldean Tegar Gemilang & Teh Nonput', 'isVIP' => true],
+            ['name' => 'Crispy Cendy', 'isVIP' => true],
             ['name' => 'Aditya Suryansah', 'isVIP' => false],
             ['name' => 'Adri', 'isVIP' => false],
             ['name' => 'Alwiantara & Istri', 'isVIP' => false],
