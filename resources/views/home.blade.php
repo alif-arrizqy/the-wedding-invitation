@@ -76,7 +76,7 @@ foreach ($detail as $item) {
             <div class="column">
 
                 <div class="text-pretitle">
-                    The Wedding
+                    Perayaan Pernikahan
                 </div>
 
 
@@ -90,8 +90,8 @@ foreach ($detail as $item) {
                     @php
                         $guest_name = ucwords(str_replace(['-', 'and'], [' ', '&'], $to));
                     @endphp
-                    <br>Dear: <span style="text-color:white; font-weight: bold;">{{ $guest_name }}</span>
-                    <br>We are inviting you to the wedding
+                    <br>Kepada: <span style="text-color:white; font-weight: bold;">{{ $guest_name }}</span>
+                    <br>Dengan hormat, kami mengundang Anda untuk menghadiri acara pernikahan kami.
                     <br>
                     <br>
                     <button href="#hidden" class="btn--stroke2 btn--small smoothscroll" style="text-color:white !important;">
@@ -149,22 +149,16 @@ foreach ($detail as $item) {
 
         <div class="row">
             <div class="column">
-
-                {{-- <p class="text-center desc-bride">We are inviting you to the wedding</p>
-                <h1 class="text-center text-huge-title">
-                    {{ $to }}
-                </h1> --}}
-
                 <nav class="tab-nav">
                     <ul class="tab-nav__list">
                         <li class="active" data-id="tab-couple">
                             <a href="#0">
-                                <span>Bride & Groom</span>
+                                <span>Mempelai</span>
                             </a>
                         </li>
                         <li>
                             <a href="#tab-event">
-                                <span>Event</span>
+                                <span>Acara</span>
                             </a>
                         </li>
                         @php
@@ -181,7 +175,7 @@ foreach ($detail as $item) {
                         @if($isCurrentGuestVIP)
                         <li>
                             <a href="#tab-guest">
-                                <span>VIP Guest</span>
+                                <span>Tamu VIP</span>
                             </a>
                         </li>
                         @endif
@@ -192,12 +186,12 @@ foreach ($detail as $item) {
                         </li>
                         <li>
                             <a href="#tab-wishes">
-                                <span>Wishes</span>
+                                <span>Ucapan</span>
                             </a>
                         </li>
                         <li>
                             <a href="#tab-gift">
-                                <span>Gift</span>
+                                <span>Hadiah</span>
                             </a>
                         </li>
                     </ul>
@@ -306,8 +300,8 @@ foreach ($detail as $item) {
                                         {{ $item->address }}
                                         <br>
                                         <br>
-                                        <a href="{{ $item->maps }}" class="btn btn--stroke u-fullwidth" target="_blank">View Maps</a>
-                                        <a href="{{ $item->calendar }}" class="btn btn--stroke u-fullwidth" target="_blank">Add to calendar</a>
+                                        <a href="{{ $item->maps }}" class="btn btn--stroke u-fullwidth" target="_blank">Lihat Maps</a>
+                                        <a href="{{ $item->calendar }}" class="btn btn--stroke u-fullwidth" target="_blank">Tambahkan ke Calendar</a>
                                     </p>
                                 </div>
                             </div>
