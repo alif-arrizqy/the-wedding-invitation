@@ -438,7 +438,7 @@ foreach ($detail as $item) {
                                             <span id="address_{{ $loop->index }}">{{ $item->address }}</span>
                                             <br>
                                             @if(!$item->note) @else Patokan : {{ $item->note }} @endif
-                                            <button class="btn btn--stroke" onclick="copyToClipboard('address_{{ $loop->index }}')">Salin Alamat</button>
+                                            <button class="btn btn--stroke" onclick="copyWithFeedback('address_{{ $loop->index }}', this)">Salin Alamat</button>
                                             <a href="{{ $item->maps }}" class="btn btn--stroke" target="_blank">Lihat Maps</a>
                                         </p>
                                     </div>
@@ -447,18 +447,59 @@ foreach ($detail as $item) {
                             </div>
                         </div>
 
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="column">
                                 <div class="row">
                                     @foreach ($bank as $item)
                                     <div class="column lg-6 tab-12">
-                                        <h4>{{ $item->name }}</h4>
                                         <img src="{{ url('/storage/') }}/{{ $item->logo }}" style="height:30px; widht:auto;">
                                         <p class="desc">
                                             <b><span id="acc_number_{{ $loop->index }}">{{ $item->acc_number }}</span></b>
                                             <br>a/n {{ $item->acc_name }}
                                             <button class="btn btn--stroke u-fullwidth" onclick="copyToClipboard('acc_number_{{ $loop->index }}')">Salin Nomor Rekening</button>
                                         </p>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <div class="row">
+                            <div class="column">
+                                <div class="row bank-cards">
+                                    @foreach ($bank as $item)
+                                    <div class="column lg-6 tab-12">
+                                        <div class="atm-card" style="background-color: #FFFFFF; color: #333333;">
+                                            <div class="atm-card-inner">
+                                                <div class="atm-card-top">
+                                                    <img src="{{ url('/storage/') }}/{{ $item->logo }}" class="bank-logo" alt="{{ $item->name }}">
+                                                    <div class="chip-icon">
+                                                        <svg width="40" height="30" viewBox="0 0 40 30" xmlns="http://www.w3.org/2000/svg">
+                                                            <rect width="40" height="30" rx="4" fill="#FFDF6E"/>
+                                                            <rect x="5" y="5" width="30" height="20" rx="2" fill="#FFD34D"/>
+                                                            <rect x="10" y="12" width="20" height="6" fill="#FFCB33"/>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <div class="atm-card-number">
+                                                    <span id="acc_number_{{ $loop->index }}">{{ $item->acc_number }}</span>
+                                                </div>
+                                                <div class="atm-card-bottom">
+                                                    <div class="atm-card-holder">
+                                                        <div class="label">CARD HOLDER</div>
+                                                        <div class="name">{{ $item->acc_name }}</div>
+                                                    </div>
+                                                    <div class="atm-card-bank">
+                                                        <div class="label">BANK</div>
+                                                        <div class="name">{{ $item->bank_name ?? 'Bank' }}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Button moved below the card -->
+                                        <button class="btn btn--stroke u-fullwidth copy-bank-btn" type="button" onclick="copyWithFeedback('acc_number_{{ $loop->index }}', this);">
+                                            Salin Nomor Rekening
+                                        </button>
                                     </div>
                                     @endforeach
                                 </div>
@@ -546,6 +587,96 @@ foreach ($detail as $item) {
                 toast.classList.remove('show');
                 setTimeout(() => document.body.removeChild(toast), 300);
             }, 3000);
+        }
+
+        function copyWithFeedback(elementId, buttonElement) {
+            // Get the text to copy
+            const text = document.getElementById(elementId).innerText;
+
+            // Create temporary textarea element
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.setAttribute('readonly', '');
+            textarea.style.position = 'absolute';
+            textarea.style.left = '-9999px';
+            document.body.appendChild(textarea);
+
+            // Try to copy the text
+            let success = false;
+            try {
+                // Select the text and copy
+                textarea.select();
+                textarea.setSelectionRange(0, 99999); // For mobile devices
+                success = document.execCommand('copy');
+
+                if (success) {
+                    // Show success state
+                    const originalHTML = buttonElement.innerHTML;
+                    buttonElement.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg> Berhasil';
+                    buttonElement.classList.add('copy-success');
+
+                    // Show toast notification
+                    showToast("Copied: " + text);
+
+                    // Reset button after delay
+                    setTimeout(() => {
+                        buttonElement.innerHTML = originalHTML;
+                        buttonElement.classList.remove('copy-success');
+                    }, 2000);
+                } else {
+                    showToast("Failed to copy. Please try again.");
+                }
+            } catch (err) {
+                console.error('Failed to copy text', err);
+                showToast("Failed to copy. Please try again.");
+            } finally {
+                document.body.removeChild(textarea);
+            }
+        }
+
+        function fallbackCopy(text, buttonElement) {
+            // Create temporary textarea element
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.setAttribute('readonly', '');
+            textarea.style.position = 'absolute';
+            textarea.style.left = '-9999px';
+            document.body.appendChild(textarea);
+
+            try {
+                // Select the text and copy
+                textarea.select();
+                const success = document.execCommand('copy');
+
+                if (success) {
+                    showCopySuccess(buttonElement, text);
+                } else {
+                    showToast("Failed to copy. Please try again.");
+                }
+            } catch (err) {
+                console.error('Failed to copy text', err);
+                showToast("Failed to copy. Please try again.");
+            } finally {
+                document.body.removeChild(textarea);
+            }
+        }
+
+        function showCopySuccess(buttonElement, text) {
+            // Original button content
+            const originalHTML = buttonElement.innerHTML;
+
+            // Change button to success state
+            buttonElement.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg> Berhasil';
+            buttonElement.classList.add('copy-success');
+
+            // Show toast message
+            showToast("Copied: " + text);
+
+            // Reset button after delay
+            setTimeout(() => {
+                buttonElement.innerHTML = originalHTML;
+                buttonElement.classList.remove('copy-success');
+            }, 2000);
         }
     </script>
     <Script>
