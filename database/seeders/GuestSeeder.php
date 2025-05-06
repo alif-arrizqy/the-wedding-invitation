@@ -23,8 +23,8 @@ class GuestSeeder extends Seeder
             ['name' => 'Khuncoro Ari Webowo', 'isVIP' => true],
             ['name' => 'Dewi Fortuna & Suami', 'isVIP' => true],
             ['name' => 'Dimas Kunto Aji', 'isVIP' => true],
-            ['name' => 'Fiqky Ilham', 'isVIP' => false],
-            ['name' => 'Herlangga', 'isVIP' => false],
+            ['name' => 'Fiqky Ilham & Istri', 'isVIP' => false],
+            ['name' => 'Herlangga Saputra', 'isVIP' => false],
             ['name' => 'Hilal Dhafir A', 'isVIP' => true],
             ['name' => 'Maulana & Istri', 'isVIP' => true],
             ['name' => 'M Fauzan', 'isVIP' => false],
@@ -63,6 +63,7 @@ class GuestSeeder extends Seeder
             ['name' => 'Debby', 'isVIP' => true],
             ['name' => 'Thomas Ardi', 'isVIP' => false],
             ['name' => 'Widi Affandi', 'isVIP' => false],
+            ['name' => 'Kamila Hulwi', 'isVIP' => false],
             ['name' => 'Cita Suci Saputri', 'isVIP' => false],
             ['name' => 'Erda Octarianti', 'isVIP' => false],
             ['name' => 'Nadia Sabila', 'isVIP' => false],
@@ -78,7 +79,7 @@ class GuestSeeder extends Seeder
             ['name' => 'Frillya', 'isVIP' => false],
             ['name' => 'Euis Wida & Suami', 'isVIP' => false],
             ['name' => 'Atik & Suami', 'isVIP' => true],
-            ['name' => 'Naya Nurwiyoga', 'isVIP' => true],
+            ['name' => 'Naya Nurwiyoga & Ayang', 'isVIP' => true],
             ['name' => 'Mega Atikadevi', 'isVIP' => false],
             ['name' => 'Komang Puspa Yoga', 'isVIP' => true],
             ['name' => 'Hadyan Adam & Istri', 'isVIP' => true],
@@ -105,6 +106,7 @@ class GuestSeeder extends Seeder
             ['name' => 'Cindy Maya & Suami', 'isVIP' => false],
             ['name' => 'Farhan Abdillah', 'isVIP' => false],
             ['name' => 'Purnama (Empuh) & Istri', 'isVIP' => false],
+            // pika
             ['name' => 'Afwan Yusuf', 'isVIP' => false],
             ['name' => 'Kak Dhanty', 'isVIP' => false],
             ['name' => 'Rahma Simamora', 'isVIP' => false],
@@ -171,6 +173,7 @@ class GuestSeeder extends Seeder
             ['name' => 'Nabila', 'isVIP' => false],
             ['name' => 'Athiyyah', 'isVIP' => false],
             ['name' => 'Indri', 'isVIP' => false],
+            // keluarga cpp
             ['name' => 'Bapak Anshori', 'isVIP' => false],
             ['name' => 'Bapak Alex', 'isVIP' => false],
             ['name' => 'Bapak Darsono', 'isVIP' => false],
@@ -180,6 +183,7 @@ class GuestSeeder extends Seeder
             ['name' => 'Bapak Bambang', 'isVIP' => false],
             ['name' => 'Bapak Yono Purwanto', 'isVIP' => false],
             ['name' => 'Bapak Sugiono', 'isVIP' => false],
+            // keluarga cpw
             ['name' => 'Ir. H. Bambang Handana', 'isVIP' => false],
             ['name' => 'Yaya Suryana', 'isVIP' => false],
             ['name' => 'Kodiyah', 'isVIP' => false],
@@ -202,7 +206,7 @@ class GuestSeeder extends Seeder
             ['name' => 'Edi Khumaedi', 'isVIP' => false],
             ['name' => 'Muchtar Puri', 'isVIP' => false],
             ['name' => 'Edi Herdiana', 'isVIP' => false],
-            ['name' => 'Abdullah Basyir', 'isVIP' => false],
+            ['name' => 'Abdul Basyir', 'isVIP' => false],
             ['name' => 'Ridwan Tailor', 'isVIP' => false],
             ['name' => 'Ali Pd Ungu', 'isVIP' => false],
         ];
@@ -210,7 +214,7 @@ class GuestSeeder extends Seeder
         foreach ($guests as $guestData) {
             // Generate a unique URL based on the guest's name
             $slug = strtolower(str_replace([' ', '&'], ['-', 'and'], $guestData['name']));
-            $url = "https://wedding-invitation.com/?to={$slug}";
+            $url = "http://momen-bahagia.site/?to={$slug}";
 
             Guest::create([
                 'wedding_id'        => 1,
