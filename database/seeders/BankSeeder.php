@@ -36,7 +36,7 @@ class BankSeeder extends Seeder
         ]);
 
         Bank::create([
-            'name'          => 'Bank Mandiri',
+            'name'          => 'Mandiri',
             'logo'          => 'mandiri.png',
             'created_at'    => now(),
             'updated_at'    => now()
@@ -92,7 +92,7 @@ class BankSeeder extends Seeder
         ]);
 
         Bank::create([
-            'name'          => 'Bank Permata',
+            'name'          => 'Permata',
             'logo'          => 'permata.png',
             'created_at'    => now(),
             'updated_at'    => now()
@@ -106,21 +106,21 @@ class BankSeeder extends Seeder
         ]);
 
         Bank::create([
-            'name'          => 'Bank BJB',
+            'name'          => 'BJB',
             'logo'          => 'bjb.png',
             'created_at'    => now(),
             'updated_at'    => now()
         ]);
 
         Bank::create([
-            'name'          => 'Bank Bukopin',
+            'name'          => 'Bukopin',
             'logo'          => 'bukopin.png',
             'created_at'    => now(),
             'updated_at'    => now()
         ]);
 
         Bank::create([
-            'name'          => 'Bank Mega',
+            'name'          => 'Mega',
             'logo'          => 'mega.png',
             'created_at'    => now(),
             'updated_at'    => now()
