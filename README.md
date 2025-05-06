@@ -60,7 +60,7 @@ sudo apt install -y lsb-release ca-certificates apt-transport-https software-pro
 echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/sury-php.list
 wget -qO - https://packages.sury.org/php/apt.gpg | sudo apt-key add -
 sudo apt update
-sudo apt install -y php8.3 php8.3-cli php8.3-common php8.3-curl php8.3-mbstring php8.3-xml php8.3-zip php8.3-mysql php8.3-gd php8.3-bcmath php8.3-fpm php8.3-tokenizer php8.3-fileinfo
+sudo apt install -y php8.3 php8.3-cli php8.3-common php8.3-curl php8.3-mbstring php8.3-xml php8.3-zip php8.3-mysql php8.3-gd php8.3-bcmath php8.3-fpm php8.3-tokenizer php8.3-fileinfo php8.3-intl
 
 # Install Composer
 curl -sS https://getcomposer.org/installer | php
