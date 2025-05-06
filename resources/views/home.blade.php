@@ -241,7 +241,9 @@ foreach ($detail as $item) {
                                             </p>
                                         </a>
                                         <br>
-                                        <img src="{{ url('/storage/') }}/{{ $item->photo }}" style="height:500px; widht:auto;">
+                                        <div class="bride-photo-container">
+                                            <img src="{{ url('/storage/') }}/{{ $item->photo }}" class="bride-photo" alt="{{ $item->name }}">
+                                        </div>
                                         <p class="desc-bride">
                                             {{ $item->child }}
                                         </p>

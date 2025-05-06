@@ -4195,3 +4195,25 @@ img.u-pull-left {
         opacity: 0;
     }
 }
+
+/* Bride photos with preserved aspect ratio */
+.bride-photo-container {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    margin: 1rem auto;
+    max-width: 500px;
+}
+
+.bride-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.bride-photo:hover {
+    transform: scale(1.02);
+}
