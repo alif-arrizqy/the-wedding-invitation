@@ -504,7 +504,46 @@ foreach ($detail as $item) {
             textarea.select();
             document.execCommand("copy");
             document.body.removeChild(textarea);
-            alert("Copied: " + copyText);
+
+            // Show custom toast notification
+            showToast("Copied: " + copyText);
+        }
+
+        // Create toast notification function
+        function showToast(message) {
+            // Create toast element
+            const toast = document.createElement('div');
+            toast.className = 'copy-toast';
+
+            // Create toast content
+            const toastContent = document.createElement('div');
+            toastContent.className = 'copy-toast-content';
+
+            // Add check icon
+            const checkIcon = document.createElement('span');
+            checkIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>';
+            checkIcon.className = 'copy-toast-icon';
+
+            // Add message
+            const messageSpan = document.createElement('span');
+            messageSpan.textContent = message;
+
+            // Assemble toast
+            toastContent.appendChild(checkIcon);
+            toastContent.appendChild(messageSpan);
+            toast.appendChild(toastContent);
+
+            // Add to DOM
+            document.body.appendChild(toast);
+
+            // Trigger animation
+            setTimeout(() => toast.classList.add('show'), 10);
+
+            // Remove after animation
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => document.body.removeChild(toast), 300);
+            }, 3000);
         }
     </script>
     <Script>
