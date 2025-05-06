@@ -4131,40 +4131,6 @@ img.u-pull-left {
     }
 }
 
-/* Toast notification styles */
-.copy-toast {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%) translateY(100px);
-    background-color: rgba(50, 50, 50, 0.9);
-    color: white;
-    padding: 12px 24px;
-    border-radius: 30px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 9999;
-    opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    font-size: 16px;
-}
-
-.copy-toast.show {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-}
-
-.copy-toast-content {
-    display: flex;
-    align-items: center;
-}
-
-.copy-toast-icon {
-    color: #63e6be;
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-}
-
 /* Button hover effect for copy buttons */
 .btn.btn--stroke {
     position: relative;
@@ -4354,8 +4320,6 @@ img.u-pull-left {
     font-size: 12px;
     margin-bottom: 5px;
 }
-
-
 
 .atm-card .label {
     color: #666666;

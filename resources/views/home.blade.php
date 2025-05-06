@@ -447,23 +447,6 @@ foreach ($detail as $item) {
                             </div>
                         </div>
 
-                        <!-- <div class="row">
-                            <div class="column">
-                                <div class="row">
-                                    @foreach ($bank as $item)
-                                    <div class="column lg-6 tab-12">
-                                        <img src="{{ url('/storage/') }}/{{ $item->logo }}" style="height:30px; widht:auto;">
-                                        <p class="desc">
-                                            <b><span id="acc_number_{{ $loop->index }}">{{ $item->acc_number }}</span></b>
-                                            <br>a/n {{ $item->acc_name }}
-                                            <button class="btn btn--stroke u-fullwidth" onclick="copyToClipboard('acc_number_{{ $loop->index }}')">Salin Nomor Rekening</button>
-                                        </p>
-                                    </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div> -->
-
                         <div class="row">
                             <div class="column">
                                 <div class="row bank-cards">
