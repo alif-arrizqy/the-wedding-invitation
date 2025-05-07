@@ -479,7 +479,6 @@ foreach ($detail as $item) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Button moved below the card -->
                                         <button class="btn btn--stroke u-fullwidth copy-bank-btn" type="button" onclick="copyWithFeedback('acc_number_{{ $loop->index }}', this);">
                                             Salin Nomor Rekening
                                         </button>
