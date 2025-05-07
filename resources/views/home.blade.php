@@ -647,6 +647,68 @@ foreach ($detail as $item) {
                 buttonElement.classList.remove('copy-success');
             }, 2000);
         }
+
+        // Add scroll fade effect functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all ATM cards and their buttons
+            const atmCards = document.querySelectorAll('.atm-card');
+            const copyButtons = document.querySelectorAll('.copy-bank-btn');
+
+            // Function to handle scroll events
+            function handleScroll() {
+                const scrollY = window.scrollY || window.pageYOffset;
+
+                // Check each ATM card and its button
+                atmCards.forEach((card, index) => {
+                    const rect = card.getBoundingClientRect();
+                    const button = copyButtons[index];
+
+                    // Calculate the visibility based on the card's position
+                    const visibility = calculateVisibility(rect);
+
+                    // Apply opacity to both card and button
+                    card.style.opacity = visibility;
+                    button.style.opacity = visibility;
+
+                    // Disable button if nearly invisible
+                    if (visibility < 0.3) {
+                        button.style.pointerEvents = 'none';
+                    } else {
+                        button.style.pointerEvents = 'auto';
+                    }
+                });
+            }
+
+            // Calculate visibility based on element position
+            function calculateVisibility(rect) {
+                const windowHeight = window.innerHeight;
+
+                // Element is above the viewport
+                if (rect.bottom < 0) return 0;
+
+                // Element is below the viewport
+                if (rect.top > windowHeight) return 0;
+
+                // Element is partially visible at the top
+                if (rect.top < 0) {
+                    return Math.min(1, rect.bottom / windowHeight);
+                }
+
+                // Element is partially visible at the bottom
+                if (rect.bottom > windowHeight) {
+                    return Math.min(1, (windowHeight - rect.top) / windowHeight);
+                }
+
+                // Element is fully visible
+                return 1;
+            }
+
+            // Add scroll event listener
+            window.addEventListener('scroll', handleScroll);
+
+            // Initial check
+            handleScroll();
+        });
     </script>
     <Script>
         (function(html) {
