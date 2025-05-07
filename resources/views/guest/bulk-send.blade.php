@@ -12,7 +12,7 @@
                             <p class="text-sm text-gray-500 mb-4">{{ $guest->isVIP ? 'VIP' : 'Non-VIP' }}</p>
 
                             @php
-                                $message = "Assalamu'alaikum Wr. Wb.\n";
+                                $message = "Assalamualaikum Wr. Wb.\n";
                                 $message .= "Kepada Yth.\n";
                                 $message .= "Bapak/Ibu/Saudara/i\n";
                                 $message .= "*{$guest->name}*\n";
@@ -20,12 +20,12 @@
                                 $message .= "Bismillahirrahmanirrahim.\n";
                                 $message .= "Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.\n\n";
                                 $message .= "📅 Minggu, 1 Juni 2025\n";
-                                $message .= "🕒 Pukul 09.00 WIB\n";
+                                $message .= "🕒 Pukul 10:00 WIB\n";
                                 $message .= "🏠 Alamat: Kediaman Mempelai Wanita (Perum Griya Pratama Mas, Blok B4/ No. 2, Desa Cikarageman, Kecamatan Setu, Bekasi)\n\n";
                                 $message .= "Silakan kunjungi link undangan digital kami:\n{$guest->url}\n\n";
                                 $message .= "Kehadiran Bapak/Ibu/Saudara/i sangat berarti bagi kami.\n\n";
                                 $message .= "Atas perhatiannya kami ucapkan terima kasih.\n";
-                                $message .= "Wassalamu'alaikum Wr. Wb.\n\n";
+                                $message .= "Wassalamualaikum Wr. Wb.\n\n";
                                 $message .= "Kami yang berbahagia,\n";
                                 $message .= "*Alif & Pika*\n";
 
