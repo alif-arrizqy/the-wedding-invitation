@@ -521,19 +521,6 @@ foreach ($detail as $item) {
     <script src="assets/undangan/js/plugins.js"></script>
     <script src="assets/undangan/js/main.js"></script>
     <script>
-        function copyToClipboard(elementId) {
-            var copyText = document.getElementById(elementId).innerText;
-            var textarea = document.createElement("textarea");
-            textarea.value = copyText;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand("copy");
-            document.body.removeChild(textarea);
-
-            // Show custom toast notification
-            showToast("Copied: " + copyText);
-        }
-
         // Create toast notification function
         function showToast(message) {
             // Create toast element
