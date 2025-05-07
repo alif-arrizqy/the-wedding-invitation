@@ -585,7 +585,7 @@ foreach ($detail as $item) {
                     buttonElement.classList.add('copy-success');
 
                     // Show toast notification
-                    showToast("Copied: " + text);
+                    showToast(text);
 
                     // Reset button after delay
                     setTimeout(() => {
@@ -639,7 +639,7 @@ foreach ($detail as $item) {
             buttonElement.classList.add('copy-success');
 
             // Show toast message
-            showToast("Copied: " + text);
+            showToast(text);
 
             // Reset button after delay
             setTimeout(() => {
