@@ -214,7 +214,7 @@ class GuestSeeder extends Seeder
         foreach ($guests as $guestData) {
             // Generate a unique URL based on the guest's name
             $slug = strtolower(str_replace([' ', '&'], ['-', 'and'], $guestData['name']));
-            $url = "http://momen-bahagia.site/?to={$slug}";
+            $url = "https://momen-bahagia.site/?to={$slug}";
 
             Guest::create([
                 'wedding_id'        => 1,

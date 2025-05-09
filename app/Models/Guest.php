@@ -26,7 +26,7 @@ class Guest extends Model
             if (empty($guest->url)) {
                 // Generate URL following the seeder pattern
                 $slug = strtolower(str_replace([' ', '&'], ['-', 'and'], $guest->name));
-                $guest->url = "https://wedding-invitation.com/?to={$slug}";
+                $guest->url = "https://momen-bahagia.site/?to={$slug}";
             }
         });
     }
