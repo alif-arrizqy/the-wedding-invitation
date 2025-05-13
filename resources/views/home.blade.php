@@ -48,6 +48,27 @@ foreach ($detail as $item) {
 
 <body id="top" class="ss-preload theme-slides">
 
+    <!-- Audio Player -->
+    <div class="audio-controls">
+        <button id="playPauseBtn" class="audio-btn" title="Play/Pause Music">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                <path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+            </svg>
+        </button>
+        <button id="muteBtn" class="audio-btn" title="Mute/Unmute Music">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-volume-up-fill" viewBox="0 0 16 16">
+                <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.486 0 0 0-2.49-6.01l-.708.707A7.476 7.486 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/>
+                <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/>
+                <path d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8c0-1.19-.51-2.192-1.318-3.182l-.708.707A3.489 3.489 0 0 1 9.025 8c0 .966-.39 1.834-1.025 2.475l.707.707z"/>
+                <path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/>
+            </svg>
+        </button>
+    </div>
+
+    <audio id="bgMusic" loop controlsList="nodownload" preload="none" oncontextmenu="return false;">
+        <source src="assets/undangan/music/wedding-song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
     <!-- preloader
     ================================================== -->
@@ -58,7 +79,6 @@ foreach ($detail as $item) {
             <div></div>
         </div>
     </div>
-
 
     <!-- intro
     ================================================== -->
@@ -863,6 +883,198 @@ foreach ($detail as $item) {
     });
     </script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const audioElement = document.getElementById('bgMusic');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const muteBtn = document.getElementById('muteBtn');
+    let isPlaying = false;
+    let isMuted = false;
+
+    // Set initial volume to 50%
+    audioElement.volume = 0.5;
+
+    // Update button icons based on state
+    function updatePlayPauseIcon() {
+        if (isPlaying) {
+            playPauseBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>
+                </svg>
+            `;
+            playPauseBtn.classList.add('playing');
+            playPauseBtn.classList.remove('paused');
+        } else {
+            playPauseBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+                </svg>
+            `;
+            playPauseBtn.classList.remove('playing');
+            playPauseBtn.classList.add('paused');
+        }
+    }
+
+    function updateMuteIcon() {
+        if (isMuted) {
+            muteBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5648.5 0 0 1 .529-.06zM11 7.983c0-1.187-.762-2.038-1.562-2.038-1.26 0-2.184 1.058-2.184 2.38 0 1.312.916 2.379 2.184 2.379.8 0 1.562-.85 1.562-2.037V7.983z"/>
+                </svg>
+            `;
+            muteBtn.classList.add('muted');
+        } else {
+            muteBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2016/18" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.486 8.486 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.074-2.197 5.303l.708.707z"/>
+                    <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.708.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.708.708z"/>
+                    <path d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8c0-1.19-.798-2.192-1.318-3.182l-.708.708A3.489 3.489 0 0 1 9.025 8c0 .966-.39 1.834-1.025 2.475l.707.707z"/>
+                    <path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/>
+                </svg>
+            `;
+            muteBtn.classList.remove('muted');
+        }
+    }
+
+    // Handle play/pause functionality
+    playPauseBtn.addEventListener('click', function() {
+        if (isPlaying) {
+            audioElement.pause();
+            isPlaying = false;
+        } else {
+            // Try to play and handle any autoplay restrictions
+            audioElement.play()
+                .then(function() {
+                    isPlaying = true;
+                })
+                .catch(function(error) {
+                    console.error('Error playing audio:', error);
+                    // Fallback: Let the user know they need to interact with the page first
+                    alert('Please click anywhere on the page to enable audio playback.');
+                });
+        }
+        updatePlayPauseIcon();
+    });
+
+    // Handle mute/unmute functionality
+    muteBtn.addEventListener('click', function() {
+        isMuted = !isMuted;
+        audioElement.muted = isMuted;
+        updateMuteIcon();
+        updateVolumeIcon();
+    });
+
+    // Function to update mute icon based on volume
+    function updateVolumeIcon() {
+        if (isMuted) {
+            muteBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/>
+                    <path d="M11.5 5.5a.5.5 0 0 1 0 1h-4a.5.5 0 0 1 0-1h4z" fill="currentColor"/>
+                </svg>
+            `;
+        }
+    }
+
+    // Start with initial state
+    updatePlayPauseIcon();
+    updateMuteIcon();
+
+    // Try to auto-play the music if the browser allows it
+    // (most browsers block autoplay, so this might not work)
+    function tryAutoplay() {
+        audioElement.volume = 0.5; // Set volume to 50%
+        audioElement.play()
+            .then(function() {
+                isPlaying = true;
+                updatePlayPauseIcon();
+            })
+            .catch(function(error) {
+                console.log('Autoplay was prevented; user interaction required.');
+                // We'll wait for user interaction
+            });
+    }
+
+    // Try to auto-play on page load
+    tryAutoplay();
+
+    // Also try to play when user clicks anywhere on the page
+    // (helps get around autoplay restrictions)
+    document.addEventListener('click', function initAudio() {
+        // Only try once
+        document.removeEventListener('click', initAudio);
+
+        if (!isPlaying) {
+            tryAutoplay();
+        }
+    }, { once: true });
+
+    // Autoplay on the intro button click
+    // The intro button should already have a click event that calls smoothScroll
+    const introButton = document.querySelector('.btn--stroke2.btn--small.smoothscroll');
+    if (introButton) {
+        // Add an event to also play music when the intro button is clicked
+        introButton.addEventListener('click', function() {
+            if (!isPlaying) {
+                tryAutoplay();
+            }
+        });
+    }
+
+    // Apply intro button interactions with the audio player
+    document.querySelectorAll('.smoothscroll').forEach(function(button) {
+        button.addEventListener('click', function() {
+            if (!isPlaying) {
+                tryAutoplay();
+            }
+        });
+    });
+
+    // Add HTML5 Page Visibility API to pause music when user leaves the page
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            // Page is not visible, maybe pause the music
+            if (isPlaying) {
+                //audioElement.pause();
+                // Not actually pausing on tab change as it might be annoying
+                // Just noting the possibility here
+            }
+        } else {
+            // Page is visible again, maybe resume music
+            if (isPlaying && audioElement.paused) {
+                //audioElement.play();
+                // Not actually playing on tab return as it might be annoying
+                // Just noting the possibility here
+            }
+        }
+    });
+
+    // Initialize HTML5 Audio API Media Session for better media controls
+    if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: 'Wedding Invitation',
+            artist: 'Wedding Music',
+            album: 'Wedding Soundtrack',
+            artwork: [
+                { src: 'assets/undangan/music/cover.png', sizes: '512x512', type: 'image/png' }
+            ]
+        });
+
+        // Add media session controls
+        navigator.mediaSession.setActionHandler('play', function() {
+            audioElement.play();
+            isPlaying = true;
+            updatePlayPauseIcon();
+        });
+
+        navigator.mediaSession.setActionHandler('pause', function() {
+            audioElement.pause();
+            isPlaying = false;
+            updatePlayPauseIcon();
+        });
+    }
+});
+</script>
     @include('sweetalert::alert')
     @livewireScripts
 </body>
