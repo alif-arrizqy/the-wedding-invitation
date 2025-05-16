@@ -60,6 +60,7 @@ class GuestSeeder extends Seeder
             ['name' => 'Nenden', 'isVIP' => false],
             ['name' => 'Agis & Istri', 'isVIP' => false],
             ['name' => 'Arvhidia Khalisa', 'isVIP' => false],
+            ['name' => 'Reni & Suami', 'isVIP' => true],
             ['name' => 'Debby', 'isVIP' => true],
             ['name' => 'Thomas Ardi', 'isVIP' => false],
             ['name' => 'Widi Affandi', 'isVIP' => false],
