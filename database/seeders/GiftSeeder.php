@@ -17,8 +17,8 @@ class GiftSeeder extends Seeder
         Gift::create([
             'wedding_id'        => 1,
             'name'              => 'Rumah Pika',
-            'address'           => 'Griya Pratama Mas Blok B4 No. 2 RT 004 RW 007 Desa Cikarageman Kec. Setu Kab. Bekasi',
-            'maps'              => 'https://maps.app.goo.gl/z3NdZL67aJ4wGh7s9',
+            'address'           => 'Pesona Kahuripan 6, Jl. Cakrabuana Blok A6/ no.27 RT 02 RW 17 Desa Dayeuh, Kec. Cileungsi, Kab. Bogor',
+            'maps'              => 'https://maps.app.goo.gl/sXtCwBiqJVtPiWjk9',
             'created_at'        => now(),
             'updated_at'        => now()
         ]);
