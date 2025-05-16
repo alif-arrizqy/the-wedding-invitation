@@ -891,8 +891,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let isPlaying = false;
     let isMuted = false;
 
-    // Set initial volume to 80%
-    audioElement.volume = 0.8;
+    // Set initial volume to 60%
+    audioElement.volume = 0.6;
 
     // Update button icons based on state
     function updatePlayPauseIcon() {
@@ -983,7 +983,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Try to auto-play the music if the browser allows it
     // (most browsers block autoplay, so this might not work)
     function tryAutoplay() {
-        audioElement.volume = 0.8; // Set volume to 80%
+        audioElement.volume = 0.6; // Set volume to 60%
         audioElement.play()
             .then(function() {
                 isPlaying = true;
