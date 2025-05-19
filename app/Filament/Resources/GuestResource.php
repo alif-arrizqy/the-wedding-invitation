@@ -165,6 +165,33 @@ class GuestResource extends Resource
                             // Redirect ke halaman broadcast WhatsApp dengan parameter ID
                             $ids = $records->pluck('id')->join(',');
                             redirect()->route('guest.bulk-send', ['ids' => $ids]);
+                        }),
+                    Tables\Actions\BulkAction::make('updateSentStatus')
+                        ->label('Update Status Pengiriman')
+                        ->icon('heroicon-o-envelope')
+                        ->form([
+                            Select::make('is_sent')
+                                ->label('Status Pengiriman')
+                                ->options([
+                                    1 => 'Terkirim',
+                                    0 => 'Belum Terkirim',
+                                ])
+                                ->required()
+                        ])
+                        ->action(function (Collection $records, array $data): void {
+                            $records->each(function ($record) use ($data) {
+                                $record->update([
+                                    'is_sent' => $data['is_sent'],
+                                ]);
+                            });
+
+                            $statusText = $data['is_sent'] ? 'Terkirim' : 'Belum Terkirim';
+                            $count = $records->count();
+
+                            Notification::make()
+                                ->title("Status pengiriman {$count} tamu telah diperbarui menjadi '{$statusText}'")
+                                ->success()
+                                ->send();
                         })
                 ]),
             ]);
