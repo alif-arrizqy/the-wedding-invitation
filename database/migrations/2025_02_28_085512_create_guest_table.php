@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('wedding_id')->constrained()->onDelete('cascade');
             $table->string('name');
-            $table->boolean('isVIP');
+            $table->boolean('isVIP')->default(false);
+            $table->string('jenis_tamu')->nullable();
+            $table->boolean('is_sent')->default(0);
             $table->string('url')->nullable();
             $table->timestamps();
         });
