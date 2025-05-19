@@ -46,6 +46,23 @@ class GuestResource extends Resource
                             0 => 'Non-VIP',
                         ])
                         ->required(),
+                    Select::make('jenis_tamu')
+                        ->options([
+                            'cpp' => 'Calon Pengantin Pria',
+                            'cpw' => 'Calon Pengantin Wanita',
+                            'keluarga_cpp' => 'Keluarga Calon Pengantin Pria',
+                            'keluarga_cpw' => 'Keluarga Calon Pengantin Wanita',
+                        ])
+                        ->required()
+                        ->label('Jenis Tamu'),
+                    Select::make('is_sent')
+                        ->options([
+                            1 => 'Terkirim',
+                            0 => 'Belum Terkirim',
+                        ])
+                        ->default(0)
+                        ->required()
+                        ->label('Status Pengiriman'),
                 ])
             ]);
     }
@@ -57,6 +74,22 @@ class GuestResource extends Resource
                 TextColumn::make('name')->searchable(),
                 TextColumn::make('isVIP')
                     ->formatStateUsing(fn (string $state): string => $state ? 'VIP' : 'Non-VIP'),
+                TextColumn::make('jenis_tamu')
+                    ->label('Jenis Tamu')
+                    ->formatStateUsing(function (string $state): string {
+                        return match($state) {
+                            'cpp' => 'Calon Pengantin Pria',
+                            'cpw' => 'Calon Pengantin Wanita',
+                            'keluarga_cpp' => 'Keluarga CPP',
+                            'keluarga_cpw' => 'Keluarga CPW',
+                            default => $state
+                        };
+                    }),
+                TextColumn::make('is_sent')
+                    ->label('Status Pengiriman')
+                    ->formatStateUsing(fn (string $state): string => $state ? 'Terkirim' : 'Belum Terkirim')
+                    ->badge()
+                    ->color(fn (string $state): string => $state ? 'success' : 'danger'),
                 TextColumn::make('url')
                     ->label('Invitation URL')
                     ->copyable()
@@ -69,6 +102,20 @@ class GuestResource extends Resource
                         '0' => 'Non-VIP',
                     ])
                     ->label('Guest Status'),
+                Tables\Filters\SelectFilter::make('jenis_tamu')
+                    ->options([
+                        'cpp' => 'Calon Pengantin Pria',
+                        'cpw' => 'Calon Pengantin Wanita',
+                        'keluarga_cpp' => 'Keluarga Calon Pengantin Pria',
+                        'keluarga_cpw' => 'Keluarga Calon Pengantin Wanita',
+                    ])
+                    ->label('Jenis Tamu'),
+                Tables\Filters\SelectFilter::make('is_sent')
+                    ->options([
+                        '1' => 'Terkirim',
+                        '0' => 'Belum Terkirim',
+                    ])
+                    ->label('Status Pengiriman'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
