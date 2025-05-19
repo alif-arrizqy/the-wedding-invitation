@@ -48,10 +48,10 @@ class GuestResource extends Resource
                         ->required(),
                     Select::make('jenis_tamu')
                         ->options([
-                            'cpp' => 'Calon Pengantin Pria',
-                            'cpw' => 'Calon Pengantin Wanita',
-                            'keluarga_cpp' => 'Keluarga Calon Pengantin Pria',
-                            'keluarga_cpw' => 'Keluarga Calon Pengantin Wanita',
+                            'Calon Pengantin Pria' => 'Calon Pengantin Pria',
+                            'Calon Pengantin Wanita' => 'Calon Pengantin Wanita',
+                            'Keluarga CPP' => 'Keluarga Calon Pengantin Pria',
+                            'Keluarga CPW' => 'Keluarga Calon Pengantin Wanita',
                         ])
                         ->required()
                         ->label('Jenis Tamu'),
@@ -78,10 +78,10 @@ class GuestResource extends Resource
                     ->label('Jenis Tamu')
                     ->formatStateUsing(function (string $state): string {
                         return match($state) {
-                            'cpp' => 'Calon Pengantin Pria',
-                            'cpw' => 'Calon Pengantin Wanita',
-                            'keluarga_cpp' => 'Keluarga CPP',
-                            'keluarga_cpw' => 'Keluarga CPW',
+                            'Calon Pengantin Pria' => 'Calon Pengantin Pria',
+                            'Calon Pengantin Wanita' => 'Calon Pengantin Wanita',
+                            'Keluarga CPP' => 'Keluarga Calon Pengantin Pria',
+                            'Keluarga CPW' => 'Keluarga Calon Pengantin Wanita',
                             default => $state
                         };
                     }),
@@ -104,10 +104,10 @@ class GuestResource extends Resource
                     ->label('Guest Status'),
                 Tables\Filters\SelectFilter::make('jenis_tamu')
                     ->options([
-                        'cpp' => 'Calon Pengantin Pria',
-                        'cpw' => 'Calon Pengantin Wanita',
-                        'keluarga_cpp' => 'Keluarga Calon Pengantin Pria',
-                        'keluarga_cpw' => 'Keluarga Calon Pengantin Wanita',
+                        'Calon Pengantin Pria' => 'Calon Pengantin Pria',
+                        'Calon Pengantin Wanita' => 'Calon Pengantin Wanita',
+                        'Keluarga CPP' => 'Keluarga Calon Pengantin Pria',
+                        'Keluarga CPW' => 'Keluarga Calon Pengantin Wanita',
                     ])
                     ->label('Jenis Tamu'),
                 Tables\Filters\SelectFilter::make('is_sent')
